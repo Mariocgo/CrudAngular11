@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "crud-games": {
+      "hosting": {
+        "crud": [
+          "crud-games"
+        ]
+      }
+    }
+  }
+}

@@ -8,6 +8,10 @@ import { HeaderModule } from './shared/components/header/header.module';
 import { GamesFormComponent } from './shared/components/games-form/games-form.component';
 import { GamesFormModule } from './shared/components/games-form/games-form.module';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,9 +21,10 @@ import { GamesFormModule } from './shared/components/games-form/games-form.modul
     BrowserModule,
     AppRoutingModule,
     HeaderModule,
-    GamesFormModule
+    GamesFormModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

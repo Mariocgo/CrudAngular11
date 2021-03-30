@@ -12,7 +12,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="table-dark" *ngFor="let item of fakeData">
+          <tr class="table-dark" *ngFor="let item of games$ | async">
             <th scope="row">{{item.nombre}}</th>
             <td>{{item.desarrolladora}}</td>
             <td>{{item.plataforma}}</td>

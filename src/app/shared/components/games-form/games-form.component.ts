@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { VideogamesService } from 'src/app/pages/videogames/videogames.service';
 import { Games } from '../../models/games.interface';
 
 @Component({
@@ -12,7 +13,8 @@ export class GamesFormComponent implements OnInit {
 
   juegos: Games = null;
   GameForm: FormGroup;
-  constructor(private router: Router, private fb: FormBuilder) {
+
+  constructor(private router: Router, private fb: FormBuilder, private gamesSvc: VideogamesService) {
     const navigation = this.router.getCurrentNavigation();
     this.juegos = navigation?.extras?.state?.value;
     this.initForm();
@@ -28,6 +30,13 @@ export class GamesFormComponent implements OnInit {
 
   onSave(): void{
     console.log('Guardado', this.GameForm);
+    if(this.GameForm.valid){
+      const game = this.GameForm.value;
+      const gameId = this.juegos?.id || null;
+      this.gamesSvc.onSaveGame(game, gameId);
+      this.GameForm.reset();
+    }
+
   }
 
   onGoBackToList(): void{
@@ -41,7 +50,7 @@ export class GamesFormComponent implements OnInit {
       plataforma:['',[Validators.required]],
       disponible:['',[Validators.required]],
       fechadeSalida:['',[Validators.required]], 
-    })
+    });
 
   }
 

@@ -1,6 +1,7 @@
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { VideogamesService } from '../videogames.service';
 
 @Component({
   selector: 'app-games',
@@ -8,7 +9,7 @@ import { NavigationExtras, Router } from '@angular/router';
   styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
-
+  games$ = this.gamesSvc.games;
   navigationExtras: NavigationExtras = {
     state: {
       value: null
@@ -16,38 +17,8 @@ export class GamesComponent implements OnInit {
     
   };
 
-  fakeData = [
-    {
-      nombre:'Mario',
-      desarrolladora: 'nintendo',
-      plataforma: 'Nintendo S',
-      fechadeSalida: '05/05/2020',
-      disponible:true
-    },
-    {
-      nombre:'Doom',
-      desarrolladora: 'bethesta',
-      plataforma: 'Nintendo S,xbox one, ps4',
-      fechadeSalida: '05/05/2020',
-      disponible:false
-    },
-    {
-      nombre:'ffvii remake',
-      desarrolladora: 'square enix',
-      plataforma: 'ps4',
-      fechadeSalida: '05/05/2020',
-      disponible:false
-    },
-    {
-      nombre:'animal crossing',
-      desarrolladora: 'nintendo',
-      plataforma: 'Nintendo S',
-      fechadeSalida: '05/05/2020',
-      disponible: true
-    }
-  ]
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private gamesSvc: VideogamesService) { }
 
   ngOnInit(): void {
   }
