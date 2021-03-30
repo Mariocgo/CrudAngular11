@@ -1,0 +1,32 @@
+<div class="card mt-2">
+    <div class="card-header">
+        Detalles del Juego
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item">
+                Nombre: <h5> {{Games.nombre}}</h5>
+            </li>
+            <li class="list-group-item">
+                Desarrolladora: <h5>{{Games.desarrolladora}} </h5>
+            </li>
+            <li class="list-group-item">
+                Plataforma: <h5> {{Games.plataforma}}</h5>
+            </li>
+            <li class="list-group-item">
+                Fecha de salida: <h5>{{Games.fechadeSalida}}</h5>
+            </li>
+            <li class="list-group-item">
+                Disponible: <h5>{{Games.disponible}}</h5>
+            </li>
+        </ul>
+    </div>
+
+    <div class="btn-group" role="group">
+        <button type="button" class="btn btn-warning m-1 btn-sm" (click)="onGoToEdit()">Editar</button>
+        <button type="button" class="btn btn-danger m-1 btn-sm" (click)="onDelete()">Eliminar</button>
+
+    </div>
+
+</div>
+<button type="button" class="btn btn-primary mt-2" (click)="onGoBackToList()">Volver</button>

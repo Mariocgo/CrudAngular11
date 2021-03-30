@@ -1,0 +1,31 @@
+<div class="table-responsive">
+
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Desarrolladora</th>
+            <th scope="col">Plataformas</th>
+            <th scope="col">Fecha de salida</th>
+            <th scope="col">Disponible</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-dark" *ngFor="let item of fakeData">
+            <th scope="row">{{item.nombre}}</th>
+            <td>{{item.desarrolladora}}</td>
+            <td>{{item.plataforma}}</td>
+            <td>{{item.fechadeSalida}}</td>
+            <td>{{item.disponible}}</td>
+            <td class="btn-group" role="group">
+                <button type="button" class="btn btn-info m-1" (click)="onGoToSee(item)">Ver</button>
+                <button type="button" class="btn btn-primary m-1" (click)="onGoToEdit(item)">Editar</button>
+                <button type="button" class="btn btn-danger m-1" (click)="onGoToDelete(item)">Eliminar</button>
+            </td>
+          </tr>
+         
+        </tbody>
+      </table>
+
+</div>
