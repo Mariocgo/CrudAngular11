@@ -31,8 +31,18 @@ export class GamesComponent implements OnInit {
     this.navigationExtras.state.value = item;
     this.router.navigate(['details'], this.navigationExtras);
   }
-  onGoToDelete(item: any):void {
-    alert('Eliminado');
+
+  async onGoToDelete(gameId: string): Promise<void> {
+    try{
+      await this.gamesSvc.onDeleteGames(gameId);
+      alert('Eliminado');
+    }catch(err){
+      reject(err.message);
+    }
   }
 
 }
+function reject(message: any) {
+  throw new Error('Function not implemented.');
+}
+

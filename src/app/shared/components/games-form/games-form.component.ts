@@ -33,7 +33,7 @@ export class GamesFormComponent implements OnInit {
     if(this.GameForm.valid){
       const game = this.GameForm.value;
       const gameId = this.juegos?.id || null;
-      this.gamesSvc.onSaveGame(game, gameId);
+      this.gamesSvc.onSaveGames(game, gameId);
       this.GameForm.reset();
     }
 
@@ -42,6 +42,13 @@ export class GamesFormComponent implements OnInit {
   onGoBackToList(): void{
     this.router.navigate(['Games'])
   }
+
+  isValidField(field: string):string{
+    const validatedField = this.GameForm.get(field);
+    return (!validatedField.valid && validatedField.touched)
+    ? 'is-invalid' : validatedField.touched ? 'is-valid' : '';
+  }
+
 
   private initForm():void{
     this.GameForm = this.fb.group({

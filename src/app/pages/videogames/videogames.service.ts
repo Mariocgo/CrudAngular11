@@ -20,7 +20,7 @@ export class VideogamesService {
    }
  
 
-   onDeleteGame(gameId: string): Promise<void>{
+   onDeleteGames(gameId: string): Promise<void>{
       return new Promise (async (resolve, rejects) => {
         try{
           const result = await this.gamesCollection.doc(gameId).delete();
@@ -31,13 +31,14 @@ export class VideogamesService {
       })
    }
 
-   onSaveGame(game: Games,gameId: string): Promise<void>{
+   onSaveGames(game: Games,gameId: string): Promise<void>{
      return new Promise ( async (resolve,rejects) => {
         try{
             const id = gameId || this.afs.createId();
             const data = {id, ...game};
             const result = await this.gamesCollection.doc(id).set(data)
             resolve(result);
+            alert('Actualizado');
         }catch(err){
           rejects(err.message);
         }

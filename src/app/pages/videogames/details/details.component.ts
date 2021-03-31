@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Games } from 'src/app/shared/models/games.interface';
+import { VideogamesService } from '../videogames.service';
 
 @Component({
   selector: 'app-details',
@@ -19,7 +20,7 @@ export class DetailsComponent implements OnInit {
     
   };
  
-  constructor(private router: Router) { 
+  constructor(private router: Router, private gamesSvc: VideogamesService) { 
     const navigation = this.router.getCurrentNavigation();
     this.Games = navigation?.extras?.state?.value;
   }
@@ -35,8 +36,14 @@ export class DetailsComponent implements OnInit {
     this.router.navigate(['edit'], this.navigationExtras);
   }
 
-  onDelete(): void{
-    alert('Eliminado')
+  async onGoToDelete(): Promise<void> {
+    try{
+      await this.gamesSvc.onDeleteGames(this.Games?.id);
+      alert('Eliminado');
+      this.onGoBackToList();
+    }catch(err){
+      reject(err.message);
+    }
   }
     
   onGoBackToList(): void{
@@ -44,3 +51,7 @@ export class DetailsComponent implements OnInit {
   }
 
 }
+function reject(message: any) {
+  throw new Error('Function not implemented.');
+}
+

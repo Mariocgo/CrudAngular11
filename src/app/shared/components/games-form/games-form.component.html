@@ -1,23 +1,52 @@
 <form class="mt-3 col-md-8 offset-md-2" (ngSubmit) = "onSave()" [formGroup]="GameForm">
     <div class="form-row">
         <div class="dorm-group col-md-6">
-           <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre"> 
+           <input type="text" class="form-control" placeholder="Nombre" formControlName="nombre" [class]="isValidField('nombre')"> 
+                <div class="invalid-feedback">
+                    <span *ngIf="GameForm.get('nombre').errors?.required">
+                        El campo nombre es querido
+                    </span>
+                </div>
         </div>
         <div class="dorm-group col-md-6">
-            <input type="text" class="form-control" placeholder="Desarrolladora" formControlName="desarrolladora"> 
-         </div>
+            <input type="text" class="form-control" placeholder="Desarrolladora" formControlName="desarrolladora" [class]="isValidField('desarrolladora')"> 
+        
+            <div class="invalid-feedback">
+                <span *ngIf="GameForm.get('desarrolladora').errors?.required">
+                    El campo Desarrolladora es requerido
+                </span>
+            </div>
+        
+        </div>
     </div>
     <div class="form-row">
         <div class="dorm-group col-md-6">
-           <input type="text" class="form-control" placeholder="Plataformas" formControlName="plataforma"> 
+           <input type="text" class="form-control" placeholder="Plataformas" formControlName="plataforma" [class]="isValidField('plataforma')"> 
+        
+           <div class="invalid-feedback">
+                <span *ngIf="GameForm.get('plataforma').errors?.required">
+                    El campo Plataformas es requerido
+                </span>
+            </div>
+        
         </div>
         <div class="dorm-group col-md-6">
-            <input type="text" class="form-control" placeholder="Fecha de salida Ej. 05/06/2021" formControlName="fechadeSalida"> 
-         </div>
+            <input type="text" class="form-control" placeholder="Fecha de salida Ej. 05/06/2021" formControlName="fechadeSalida" [class]="isValidField('fechadeSalida')"> 
+            <div class="invalid-feedback">
+                <span *ngIf="GameForm.get('fechadeSalida').errors?.required">
+                    El campo fecha de salida es requerido
+                </span>
+            </div>
+        </div>
     </div>
     <div class="form-row">
         <div class="dorm-group col-md-6">
-           <input type="text" class="form-control" placeholder="Disponible" formControlName="disponible"> 
+           <input type="text" class="form-control" placeholder="Disponible" formControlName="disponible" [class]="isValidField('disponible')"> 
+           <div class="invalid-feedback">
+            <span *ngIf="GameForm.get('disponible').errors?.required">
+                El campo disponible es requerido
+            </span>
+        </div>
         </div>    
     </div>
     <button type="submit" class="btn btn-success btn-block ">Guardar</button>
